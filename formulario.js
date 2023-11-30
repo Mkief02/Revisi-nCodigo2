@@ -1,33 +1,90 @@
-var formulario = document.querySelector("#form")
+// Se modificó el código por completo por uno mejor estructurado y legible pero sin estilos
 
-formulario.onsubmit = function(e) {
+let users = [];
 
-  e.prevent();
+function agregarUsuario() {
+    const nombre = document.getElementById('name').value;
+    const edad = document.getElementById('age').value;
+    const nacionalidad = document.getElementById('nationality').value;
+
+
+    // Verificar condiciones (por ejemplo, edad mayor a 0)
+    if (nombre.length !== 0 && edad > 18 || edad < 120) {
+        const user = { nombre, edad, nacionalidad };
+        users.push(user);
+        mostrarUsuarios();
+    } else {
+        alert('Por favor, complete todos los campos correctamente.');
+    }
+}
+
+function eliminarUsuario() {
+    if (users.length > 0) {
+        users.pop();
+        mostrarUsuarios();
+    } else {
+        alert('No hay usuarios para eliminar.');
+    }
+}
+
+function mostrarUsuarios() {
+    const usuariosList = document.getElementById('usersList');
+    usuariosList.innerHTML = '';
+    users.forEach((user) => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `Nombre: ${user.nombre}, Edad: ${user.edad}, Nacionalidad: ${user.nacionalidad}`;
+        usuariosList.appendChild(listItem);
+    });
+}
+
+/*
+// Se modificó el método para acceder a la referencia del formulario por uno más adecuado y se cambió la variable var por const
+const formulario = document.forms['formulario'];
+
+// se modifcó el nombre de la función y el método para evitar el comportamiento por default
+formulario.onsubmit = function(event) {
+
+  event.preventDefault();
+
+  const user = {
+    nombre : formulario.elements["name"].value ,
+    edad : formulario.elements["age"].value ,
+    nacionalidad : formulario.elements["nationality"]
+}
+if( datosVerificados( user )  ){
+  agregarInvitado( user );
+}
+    
+  // let n = formulario.elements[0]
+  // let e = formulario.elements[1]
+  // let na = formulario.elements[2]
+
+  // const nombre = n.value
+  // const edad = e.value
+
+  // var i = na.selectedIndex
+  // var nacionalidad = na.options[i].value
+  // console.log(nombre, edad)
+  // console.log(nacionalidad)
+  const datosVerificados = ( user ) => {
+    let response = true;
+    if (nombre.length === 0) {
+      nombre.classList.add("error")
+    }
+    if (edad < 18 || edad > 120) {
+      edad.classList.add("error")
+    }
   
-  var n = formulario.elements[0]
-  var e = formulario.elements[1]
-  var na = formulario.elements[2]
+  if (nombre.length > 0 
+    && (edad > 18 
+      && edad < 120) ) {
+    agregarInvitado(user);
+    }
 
-  var nombre = n.value
-  var edad = e.value
+    return response;
+}
 
-  var i = na.selectedIndex
-  var nacionalidad = na.options[i].value
-  console.log(nombre, edad)
-  console.log(nacionalidad)
-
-  if (nombre.length === 0) {
-    n.classList.add("error")
-  }
-  if (edad < 18 || edad > 120) {
-    e.classList.add("error")
-  }
-
-if (nombre.length > 0 
-  && (edad > 18 
-    && edad < 120) ) {
-  agregarInvitado(nombre, edad, nacionalidad)
-  }
+  
 }
 
 var botonBorrar = document.createElement("button")
@@ -94,4 +151,4 @@ elementoLista.appendChild(botonBorrar);
 // this.parentNode.style.display = 'none';
 botonBorrar.parentNode.remove()
   }
-}
+} */

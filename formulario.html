@@ -8,6 +8,7 @@
   <link rel="stylesheet" type="text/css" media="screen" href="./styles.css">
   <title>Formulario</title>
 </head>
+
 <body>
   <h1>Bienvenidos a mi fiesta</h1>
   <h2>Por favor, confirmar asistencia:</h2>
@@ -29,12 +30,19 @@
     <input type="submit">
   </form>
 
+  <!-- Se agregaron los botones -->
+  <div>
+    <button type="button" onclick="agregarUsuario()">Agregar Usuario</button>
+    <button type="button" onclick="eliminarUsuario()">Eliminar Usuario</button>
+  </div>
+<!-- Se agregó el contenedor de la lista -->
   <div>
     <h2>Lista de invitados</h2>
-
-  </div>
-
-  <script src="../formulario.js"></script>
+    <div>
+      <ul id="usersList"></ul>
+    </div>
+<!-- Se modificó la ruta del script -->
+    <script src="formulario.js"></script>
 </body>
 
 </html>
